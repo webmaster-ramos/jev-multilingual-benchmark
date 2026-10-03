@@ -1,0 +1,7 @@
+{
+  "dataset": "smoke",
+  "tasks": "short,long",
+  "arms": "flashlite,gemma4,gpt5mini,jev,llamaguard,nemotron,safeguard",
+  "items": 40,
+  "started_utc": "2026-10-02T15:20:40+00:00"
+}

@@ -1,0 +1,34 @@
+# The 30 store views of the reference storefront, grouped into 25 languages.
+# `lang` is the ISO 639-1 code used in dataset items; `script` is ISO 15924.
+locales:
+  en_US: {lang: en, name: English, script: Latn}
+  en_GB: {lang: en, name: English, script: Latn}
+  de_DE: {lang: de, name: German, script: Latn}
+  fr_FR: {lang: fr, name: French, script: Latn}
+  es_ES: {lang: es, name: Spanish, script: Latn}
+  es_CR: {lang: es, name: Spanish, script: Latn}
+  it_IT: {lang: it, name: Italian, script: Latn}
+  pt_BR: {lang: pt, name: Portuguese, script: Latn}
+  pt_PT: {lang: pt, name: Portuguese, script: Latn}
+  nl_NL: {lang: nl, name: Dutch, script: Latn}
+  pl_PL: {lang: pl, name: Polish, script: Latn}
+  cs_CZ: {lang: cs, name: Czech, script: Latn}
+  hu_HU: {lang: hu, name: Hungarian, script: Latn}
+  ro_RO: {lang: ro, name: Romanian, script: Latn}
+  el_GR: {lang: el, name: Greek, script: Grek}
+  sv_SE: {lang: sv, name: Swedish, script: Latn}
+  fi_FI: {lang: fi, name: Finnish, script: Latn}
+  tr_TR: {lang: tr, name: Turkish, script: Latn}
+  ru_RU: {lang: ru, name: Russian, script: Cyrl}
+  uk_UA: {lang: uk, name: Ukrainian, script: Cyrl}
+  ar_SA: {lang: ar, name: Arabic, script: Arab}
+  hi_IN: {lang: hi, name: Hindi, script: Deva}
+  th_TH: {lang: th, name: Thai, script: Thai}
+  vi_VN: {lang: vi, name: Vietnamese, script: Latn}
+  id_ID: {lang: id, name: Indonesian, script: Latn}
+  ja_JP: {lang: ja, name: Japanese, script: Jpan}
+  ko_KR: {lang: ko, name: Korean, script: Kore}
+  zh_CN: {lang: zh, name: Chinese, script: Hans}
+  zh_TW: {lang: zh, name: Chinese, script: Hant}
+  zh_HK: {lang: zh, name: Chinese, script: Hant}
+smoke_languages: [en, es, de, ru, uk, ar, ja, zh]

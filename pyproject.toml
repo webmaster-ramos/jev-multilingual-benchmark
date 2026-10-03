@@ -1,0 +1,27 @@
+[project]
+name = "jev-multilingual-benchmark"
+version = "0.1.0"
+description = "Benchmark: a typed decision model (TypeSafe Jev) vs chat and guard models on multilingual user-generated-content moderation"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "pyarrow>=15",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.6",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]

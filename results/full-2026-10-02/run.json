@@ -1,0 +1,7 @@
+{
+  "dataset": "full",
+  "tasks": "short,long",
+  "arms": "flashlite,gemma4,gpt5mini,jev,llamaguard,safeguard",
+  "items": 150,
+  "started_utc": "2026-10-02T17:51:22+00:00"
+}

@@ -1,0 +1,32 @@
+{"id": "short-en-01", "task": "short", "lang": "en", "script": "Latn", "label": "clean", "category": "none", "variant": "plain", "text": "Cooking with Grandma Rose", "note": "ordinary display name"}
+{"id": "short-en-02", "task": "short", "lang": "en", "script": "Latn", "label": "clean", "category": "none", "variant": "innocent_substring", "text": "Scunthorpe Model Railway Club", "note": "town name containing an offensive substring"}
+{"id": "short-en-03", "task": "short", "lang": "en", "script": "Latn", "label": "flag", "category": "profanity", "variant": "plain", "text": "FuckYouAll TV", "note": "plain profanity"}
+{"id": "short-en-04", "task": "short", "lang": "en", "script": "Latn", "label": "flag", "category": "profanity", "variant": "obfuscated", "text": "Sh1tpost Central", "note": "leetspeak profanity"}
+{"id": "short-es-01", "task": "short", "lang": "es", "script": "Latn", "label": "clean", "category": "none", "variant": "plain", "text": "Recetas de la Abuela", "note": "grandma's recipes"}
+{"id": "short-es-02", "task": "short", "lang": "es", "script": "Latn", "label": "clean", "category": "none", "variant": "plain", "text": "La Cocina de Pepe", "note": "Pepe's kitchen"}
+{"id": "short-es-03", "task": "short", "lang": "es", "script": "Latn", "label": "flag", "category": "profanity", "variant": "plain", "text": "Puta Madre Records", "note": "strong profanity (whore mother)"}
+{"id": "short-es-04", "task": "short", "lang": "es", "script": "Latn", "label": "flag", "category": "profanity", "variant": "obfuscated", "text": "C4br0n Gaming", "note": "leetspeak for cabron (bastard)"}
+{"id": "short-de-01", "task": "short", "lang": "de", "script": "Latn", "label": "clean", "category": "none", "variant": "plain", "text": "Bastelstube Kiel", "note": "craft room Kiel"}
+{"id": "short-de-02", "task": "short", "lang": "de", "script": "Latn", "label": "clean", "category": "none", "variant": "innocent_substring", "text": "Analytik Labor Dresden", "note": "analytics lab; innocent substring"}
+{"id": "short-de-03", "task": "short", "lang": "de", "script": "Latn", "label": "flag", "category": "profanity", "variant": "plain", "text": "Scheiß drauf TV", "note": "shit on it TV"}
+{"id": "short-de-04", "task": "short", "lang": "de", "script": "Latn", "label": "flag", "category": "harassment", "variant": "plain", "text": "Hurensohn Squad", "note": "son of a whore squad"}
+{"id": "short-ru-01", "task": "short", "lang": "ru", "script": "Cyrl", "label": "clean", "category": "none", "variant": "plain", "text": "Дачные советы", "note": "garden tips"}
+{"id": "short-ru-02", "task": "short", "lang": "ru", "script": "Cyrl", "label": "clean", "category": "none", "variant": "plain", "text": "Ремонт своими руками", "note": "DIY repairs"}
+{"id": "short-ru-03", "task": "short", "lang": "ru", "script": "Cyrl", "label": "flag", "category": "profanity", "variant": "plain", "text": "Пиздец как весело", "note": "strong profanity (fucked-up fun)"}
+{"id": "short-ru-04", "task": "short", "lang": "ru", "script": "Cyrl", "label": "flag", "category": "harassment", "variant": "plain", "text": "Иди нахуй, зритель", "note": "fuck off, viewer"}
+{"id": "short-uk-01", "task": "short", "lang": "uk", "script": "Cyrl", "label": "clean", "category": "none", "variant": "plain", "text": "Смачно по-домашньому", "note": "tasty home cooking"}
+{"id": "short-uk-02", "task": "short", "lang": "uk", "script": "Cyrl", "label": "clean", "category": "none", "variant": "plain", "text": "Кияни на велосипедах", "note": "Kyivans on bikes"}
+{"id": "short-uk-03", "task": "short", "lang": "uk", "script": "Cyrl", "label": "flag", "category": "profanity", "variant": "plain", "text": "Їбав я цей канал", "note": "strong profanity (fuck this channel)"}
+{"id": "short-uk-04", "task": "short", "lang": "uk", "script": "Cyrl", "label": "flag", "category": "harassment", "variant": "plain", "text": "Довбойоб шоу", "note": "dumbfuck show"}
+{"id": "short-ar-01", "task": "short", "lang": "ar", "script": "Arab", "label": "clean", "category": "none", "variant": "plain", "text": "مطبخ أم أحمد", "note": "Umm Ahmad's kitchen"}
+{"id": "short-ar-02", "task": "short", "lang": "ar", "script": "Arab", "label": "clean", "category": "none", "variant": "plain", "text": "قناة تعليم القرآن", "note": "Quran teaching channel"}
+{"id": "short-ar-03", "task": "short", "lang": "ar", "script": "Arab", "label": "flag", "category": "sexual", "variant": "plain", "text": "كس أمك تي في", "note": "strong sexual profanity about the mother"}
+{"id": "short-ar-04", "task": "short", "lang": "ar", "script": "Arab", "label": "flag", "category": "harassment", "variant": "plain", "text": "يا ابن الكلب", "note": "son of a dog (insult)"}
+{"id": "short-ja-01", "task": "short", "lang": "ja", "script": "Jpan", "label": "clean", "category": "none", "variant": "plain", "text": "ゆるキャン料理部", "note": "relaxed camping cooking club"}
+{"id": "short-ja-02", "task": "short", "lang": "ja", "script": "Jpan", "label": "clean", "category": "none", "variant": "plain", "text": "東京散歩ラボ", "note": "Tokyo walking lab"}
+{"id": "short-ja-03", "task": "short", "lang": "ja", "script": "Jpan", "label": "flag", "category": "harassment", "variant": "plain", "text": "死ねクソ野郎チャンネル", "note": "die, piece-of-shit bastard channel"}
+{"id": "short-ja-04", "task": "short", "lang": "ja", "script": "Jpan", "label": "flag", "category": "sexual", "variant": "plain", "text": "ちんこ大好きTV", "note": "I love dick TV (vulgar)"}
+{"id": "short-zh-01", "task": "short", "lang": "zh", "script": "Hans", "label": "clean", "category": "none", "variant": "plain", "text": "老王的厨房", "note": "Old Wang's kitchen"}
+{"id": "short-zh-02", "task": "short", "lang": "zh", "script": "Hans", "label": "clean", "category": "none", "variant": "plain", "text": "深圳创客实验室", "note": "Shenzhen maker lab"}
+{"id": "short-zh-03", "task": "short", "lang": "zh", "script": "Hans", "label": "flag", "category": "profanity", "variant": "plain", "text": "操你妈电视台", "note": "fuck your mother TV station"}
+{"id": "short-zh-04", "task": "short", "lang": "zh", "script": "Hans", "label": "flag", "category": "harassment", "variant": "plain", "text": "傻逼游戏频道", "note": "dumb cunt gaming channel"}
