@@ -5,6 +5,9 @@
 > research corpora. It is here to test moderation models; do not use it to train or prompt a
 > model to produce such content. Licences and attribution: [NOTICE.md](NOTICE.md).
 
+**Article:** [Does the Cheap Decision Model Speak Your Customer's Language](https://webmaster-ramos.com/blog/decision-model-in-your-customers-language) -
+the write-up of these results for a multilingual store, with the routing recipe.
+
 A reproducible benchmark of **typed decision models vs chat and guard models** on one job a
 multilingual storefront actually has: moderating short user-generated text (a display name, a
 personalisation field) and long user-generated text (a comment, a review) across the
