@@ -88,6 +88,52 @@ def jev_questions(task: str) -> dict[str, dict]:
     return questions
 
 
+def decision_questions(task: str) -> list[dict]:
+    """The Jev battery in the OpenAI Decisions API shape (added 2026-10-07).
+
+    Same policy, criteria, category, language and severity wording as `jev_questions`; only the
+    envelope differs: Jev reads the text from a named state key, the Decisions API from `input`.
+    """
+    noun = TASK_NOUN[task]
+    jq = jev_questions(task)
+    flag = jq["flag"]["criteria"]
+    questions: list[dict] = [
+        {
+            "type": "predicate",
+            "name": "flag",
+            "instructions": (
+                f"Policy: {POLICY}\n\nIs this {noun} unacceptable under the policy?\n"
+                f"True: {flag['true']}\nFalse: {flag['false']}"
+            ),
+        },
+        {
+            "type": "choice",
+            "name": "category",
+            "instructions": f"Which category best describes this {noun}? Pick `none` if it is acceptable.",
+            "choices": [{"value": key, "description": desc} for key, desc in CATEGORIES.items()],
+        },
+        {
+            "type": "choice",
+            "name": "language",
+            "instructions": f"Which language is this {noun} written in?",
+            "choices": [{"value": name} for name in LANGUAGES],
+        },
+    ]
+    if task == "long":
+        questions.append(
+            {
+                "type": "score",
+                "name": "severity",
+                "instructions": f"How severe is this {noun} under the policy?",
+                "levels": [
+                    {"label": level.split(":", 1)[0], "description": level.split(":", 1)[1].strip()}
+                    for level in SEVERITY_LEVELS
+                ],
+            }
+        )
+    return questions
+
+
 CHAT_SCHEMA: dict = {
     "type": "object",
     "additionalProperties": False,

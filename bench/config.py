@@ -18,9 +18,9 @@ RESULTS_DIR = ROOT / "results"
 @dataclass(frozen=True)
 class Arm:
     key: str
-    provider: str  # "jev" | "openrouter"
+    provider: str  # "jev" | "openrouter" | "openai"
     model: str
-    kind: str  # "decision" | "chat_json" | "guard_llama" | "guard_nemotron" | "guard_policy"
+    kind: str  # "decision" | "decision_openai" | "chat_json" | "guard_llama" | "guard_nemotron" | "guard_policy"
     note: str = ""
     reasoning_effort: str | None = None
     max_tokens: int = 800
@@ -93,6 +93,29 @@ ARMS: dict[str, Arm] = {
         "Dropped from the comparison on 2026-10-02: no probability, slower and less accurate "
         "than the other guards, and the free route is capped per day.",
         max_tokens=512,
+        default=False,
+    ),
+    # Added 2026-10-07, after publication. Not default arms: the published comparison stays as
+    # it was; these run into separate results/<dataset>-2026-10-07 directories.
+    "decisions": Arm(
+        key="decisions",
+        provider="openai",
+        model="gpt-6-luna",
+        kind="decision_openai",
+        note="OpenAI Decisions API (public beta, POST /v1/decisions): typed answers with "
+        "probabilities, input-only pricing. OpenAI-only endpoint.",
+        default=False,
+    ),
+    "luna": Arm(
+        key="luna",
+        provider="openrouter",
+        model="openai/gpt-6-luna",
+        kind="chat_json",
+        note="The model behind the Decisions API, called as an ordinary chat model with the same "
+        "JSON schema as the other chat arms. Shows what the decision endpoint adds over the model.",
+        reasoning_effort="low",
+        max_tokens=1000,
+        temperature=None,
         default=False,
     ),
 }

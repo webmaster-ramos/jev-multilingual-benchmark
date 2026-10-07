@@ -34,6 +34,27 @@ def from_jev(answers: dict) -> dict:
     return verdict
 
 
+def from_openai_decisions(answers: dict) -> dict:
+    """OpenAI Decisions API answers keyed by question name. A `refusal` answer leaves the field
+    empty: a refused flag question is an unparsed verdict, counted like any other."""
+    verdict = dict(EMPTY)
+    flag = answers.get("flag") or {}
+    if flag.get("type") == "predicate" and flag.get("probability") is not None:
+        verdict["p_flag"] = float(flag["probability"])
+        verdict["flag"] = verdict["p_flag"] >= 0.5
+    category = answers.get("category") or {}
+    if category.get("type") == "choice":
+        verdict["category"] = category.get("choice")
+        verdict["confidence"] = category.get("confidence")
+    language = answers.get("language") or {}
+    if language.get("type") == "choice":
+        verdict["language"] = language.get("choice")
+    severity = answers.get("severity") or {}
+    if severity.get("type") == "score":
+        verdict["severity"] = severity.get("score")
+    return verdict
+
+
 def from_chat_json(text: str) -> dict:
     verdict = dict(EMPTY)
     data = _parse_json(text)

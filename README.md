@@ -35,6 +35,67 @@ Measured 2-3 October 2026, scored only on items a blind reviewer confirmed:
 
 The boundary is the kind of text, not the language. Details and caveats below.
 
+## Addendum 2026-10-07: OpenAI's Decisions API on the same items
+
+Two weeks after Jev launched, OpenAI shipped a decision endpoint of the same shape: the
+[Decisions API](https://developers.openai.com/api/docs/guides/decisions) (public beta,
+`POST /v1/decisions`, model `gpt-6-luna`): typed answers with probabilities, input-only
+pricing ($0.10 per 1M input tokens, no output charge, guide read 2026-10-07). It was run here
+on 2026-10-07 with the same policy, questions and items. Two arms were added:
+
+- `decisions`: the Decisions API, called directly. The Jev battery maps one to one: `flag` as a
+  `predicate`, `category` and `language` as `choice`, `severity` as `score`
+  (`bench.prompts.decision_questions`).
+- `luna`: the same model, `openai/gpt-6-luna`, called through OpenRouter as an ordinary chat
+  model with the JSON schema the other chat arms use (reasoning effort low). It shows what
+  the decision endpoint adds or removes compared with the model itself.
+
+The new runs are in `results/<dataset>-2026-10-07/`. The published arms are linked into those
+directories (symlinks to the 2026-10-02/03 runs), so each `summary.verified.md` there shows all
+seven arms side by side; the original run directories and the article's numbers are unchanged.
+Neither new arm is a default arm. Cost of both runs: $0.39 ($0.19 Decisions API, $0.21 OpenRouter).
+
+Verified items only, same bases as the article:
+
+| | Decisions API | gpt-6-luna (chat) | Jev 1.13 | gpt-5-mini | Flash-Lite |
+|---|---:|---:|---:|---:|---:|
+| clean texts flagged, of 360 (25 languages) | 0 | 0 | 1 | 1 | 2 |
+| written offensive names caught, of 30 | 28 | 30 | 28 | 30 | - |
+| disguised written names caught, of 25 | 12 (+1 refused) | 25 | 13 | - | - |
+| bare list terms caught, of 107 (21 languages) | 38 (+10 refused) | 95 | 36 | 78 | 76 |
+| verified comments, accuracy (520, 8 languages) | 96.9% | 98.1% | 94.0% | 89.0% | 95.4% |
+| offensive comments caught, of 184 | 175 | 183 | 175 | 184 | 178 |
+| acceptable comments flagged, of 336 | 7 | 9 | 22 | 57 | 18 |
+| p50 latency, comments (one client, Europe) | 243 ms | 2,281 ms | 250 ms | 2,180 ms | 467 ms |
+| $ per 1,000 comments, as run | 0.10 | 0.10 | 0.05 | 0.48 | 0.05 |
+
+What it shows:
+
+- **The decision endpoint draws the same line as Jev.** It is excellent on sentences (no false
+  positive on 360 clean texts, and on comments it catches the same 175 of 184 as Jev with 7
+  false positives instead of 22) and weak on a lone word: 38 of 107 bare swear words, against
+  Jev's 36. The article's conclusion - the boundary runs between a sentence and a lone word,
+  not between English and other languages - holds for a second decision model from a different
+  vendor.
+- **The same model as a chat model does not have that weakness.** `gpt-6-luna` through the chat
+  API catches 95 of 107 bare terms and all 25 disguised names, at about ten times the latency.
+  What the decision endpoint trades away on a lone word, the model itself still knows.
+- **It refuses instead of answering, sometimes.** 39 `refusal` answers on the flag question
+  across all runs (18 on verified list terms, 10 of them bare; 1 on a disguised written name), every one of them on
+  an item labelled offensive and none on a clean one. Treated as "flag", refusals lift the
+  bare-term count from 38 to 48. A pipeline using this endpoint has to handle `refusal` as a
+  verdict, not an error.
+- **Its probability does not jump for disguise.** Jev's probability rises for anything that
+  looks disguised (a 0.2 floor flags 55 of 125 disguised clean names). The Decisions API flags
+  none of the 125 at 0.5 or at 0.2; lowering its threshold to 0.2 lifts bare terms from 38
+  to 50.
+
+Caveats specific to this addendum: the blind reviewer that verified the items is GPT-6.1 Sol,
+the same model family as `gpt-6-luna`, so the chat arm's agreement with the review may be
+flattered by family resemblance (the Decisions API runs the same model and does not show it).
+The Decisions API is a beta; prices, refusals and behaviour may change. Measured once, on
+2026-10-07.
+
 ## Status (2026-10-03)
 
 - **Four datasets are built and run** on six arms (see [Data](#data)): `full` for 5 languages,
@@ -59,6 +120,8 @@ The boundary is the kind of text, not the language. Details and caveats below.
 | `gemma4` | `google/gemma-4-26b-a4b-it` | chat + strict JSON schema | open-weight Google model |
 | `llamaguard` | `meta-llama/llama-guard-4-12b` | fixed-taxonomy guard | what a "safety classifier" answers; profanity is not a hazard in its taxonomy |
 | `safeguard` | `openai/gpt-oss-safeguard-20b` | policy-conditioned guard | takes our policy text as the policy |
+| `decisions` | `gpt-6-luna` (OpenAI Decisions API, direct) | typed decision model | added 2026-10-07: OpenAI's decision endpoint, same shape as Jev; not a default arm |
+| `luna` | `openai/gpt-6-luna` via OpenRouter | chat + strict JSON schema | added 2026-10-07: the model behind the Decisions API, as a chat model; not a default arm |
 
 **Tested and dropped: `nemotron`** (`nvidia/nemotron-3.5-content-safety`, a 4B guard with the
 Aegis taxonomy, which includes Profanity). It answers safe or unsafe with no probability, so
@@ -131,7 +194,7 @@ items in five languages only.
 
 ```bash
 uv sync
-cp .env.example .env   # TYPESAFE_API_KEY, OPENROUTER_API_KEY
+cp .env.example .env   # TYPESAFE_API_KEY, OPENROUTER_API_KEY, OPENAI_API_KEY (decisions arm only)
 
 uv run python -m bench.validate && uv run python -m bench.build            # -> full
 uv run python -m bench.validate --clean && uv run python -m bench.build --clean   # -> clean

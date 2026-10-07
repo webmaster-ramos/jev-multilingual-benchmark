@@ -16,7 +16,7 @@ from pathlib import Path
 from bench import prompts, verdicts
 from bench.config import ARMS, DEFAULT_ARMS, RESULTS_DIR, Arm
 from bench.data import load_items
-from bench.providers import jev, openrouter
+from bench.providers import jev, openai_decisions, openrouter
 
 
 def run_item(arm: Arm, item: dict) -> dict:
@@ -45,6 +45,12 @@ def run_item(arm: Arm, item: dict) -> dict:
             )
             record["raw"] = result["answers"]
             record["verdict"] = verdicts.from_jev(result["answers"])
+        elif arm.kind == "decision_openai":
+            result = openai_decisions.evaluate(
+                text, prompts.decision_questions(task), model=arm.model
+            )
+            record["raw"] = result["answers"]
+            record["verdict"] = verdicts.from_openai_decisions(result["answers"])
         else:
             if arm.kind == "chat_json" or arm.kind == "guard_policy":
                 messages, schema = prompts.chat_messages(task, text), prompts.CHAT_SCHEMA

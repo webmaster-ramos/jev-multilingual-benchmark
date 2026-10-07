@@ -1,0 +1,7 @@
+{
+  "dataset": "lexicon",
+  "tasks": "short,long",
+  "arms": "decisions,flashlite,gemma4,gpt5mini,jev,llamaguard,luna,safeguard",
+  "items": 670,
+  "started_utc": "2026-10-07T13:32:21+00:00"
+}
